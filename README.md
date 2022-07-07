@@ -19,10 +19,6 @@
 
 ## Prerequisites
 
-```
-* 소스코드를 실행하기 위해 필요한 라이브러리/프레임워크, 데이터셋, 컴퓨팅 환경을 명시
-```
-
 - ML 프레임워크 : Tensorflow 2.6.0, Scikit-Learn
 - 학습 데이터셋 : NTHU-DDD
 - 컴퓨팅 환경 : NVIDIA RTX A6000
@@ -35,17 +31,17 @@
 
 **데이터셋 내용 및 구조**
 
-(예) 이미지 인식을 위한 데이터셋은 오픈 데이터셋인 Cifar10을 사용합니다.
+운전자 졸음 탐지를 위한 데이터셋은 NTHU-DDD를 사용합니다.
 
-(예) 이미지 인식을 위한 데이터셋은 연구사업에서 자체적으로 구축한 데이터셋입니다. 데이터 구조(메타데이터)는 다음과 같습니다.
+위 데이터셋은 라이센스 동의서를 해당 기관에 보내야 얻을 수 있습니다.  데이터 구조(메타데이터)는 다음과 같습니다.
 
 <br>
 
 **데이터셋 소스 정보**
 
-(예) 데이터셋 다운로드 url :  https://www.cs.toronto.edu/~kriz/cifar.html 
+데이터셋 다운로드 url :  http://cv.cs.nthu.edu.tw/php/callforpaper/datasets/DDD/
 
-(예) 데이터셋 보유 부서 및 연락처 : <부서명> <email 주소> <전화번호> 
+데이터셋 보유 부서 및 연락처 : <인간로봇상호작용연구실> <hse@etri.re.kr> <010-4763-2512> 
 
 <br>
 
@@ -53,22 +49,25 @@
 
 **데이터 준비, 전처리 절차**
 
-(예) 이미지 데이터셋의 준비, 전처리 절차는 다음과 같습니다 
+NTHU-DDD 데이터셋의 준비, 전처리 절차는 다음과 같습니다 
 
-1. 데이터셋 소스 정보를 참조하여 데이터셋을 다운로드 받는다
-2. 데이터와 레이블은 별개의 Hive 테이블로 분류하여 저장한다
-3. JSON 구조의 메타정보로 이미지 연관 정보를 저장한다. json 파일명은 metadata.json
-4. 데이터셋은 학습, 검증, 테스트 데이터셋으로 분류되어 있다. 학습 데이터셋은 50,000개, 테스트 데이터셋은 10,000개 데이터셋으로 구성된다
+1. 데이터셋 소스 정보를 참조하여 데이터셋 라이센스 동의서를 작성해 해당 기관 이메일로 보낸 후, 다운로드 서버를 취득한다.(약 2주 소요)
+2. 데이터셋은 학습, 검증, 테스트 데이터셋으로 분류되어 있다. 학습 데이터셋은 18명의 피실험자 360개 동영상, 검증 데이터셋은 4명의 피실험자 16개 동영상, 테스트 데이터셋은 14명의 피실험자 60개의 동영상으로 구성된다.
+3. 동영상을 프레임 별로 읽고 Gamma Correction, Contrast Normalization 을 수행한다.
+4. 눈, 입을 64x64로 검출하여 이미지로 저장한다.
+5. 이미지를 설정한 temporal-depth 만큼씩 가져와 (W x H x T) 형태의 데이터셋으로 재구성한다.
+6. 재구성된 데이터셋을 하나의 .npy 파일로 만들어 학습 데이터를 생성한다.
 
 <br>
 
 **코드 실행 방법**
 
-(예) 데이터 처리를 위한 Python 코드의 파일명은 dataproc.py 입니다.  코드 실행 절차는 다음과 같습니다.
-* 주피터 노트북에서 실행 방법 또는
-* Python 스크립트로 실행 방법 또는
-* IDE(PyCharm)에서 실행 방법 또는
-* Docker 이미지의 실행 방법
+데이터 처리를 위한 Python 코드의 파일명은 preprocessing/make_images.py, preprocessing/to_npy.py 그리고 preprocessing/concat.py 입니다.
+코드 실행 절차는 다음과 같습니다.
+
+1. IDE(PyCharm)에서 make_images.py 실행하여 이미지 생성
+2. IDE(PyCharm)에서 to_npy.py 실행하여 (W x H x T) 형태의 데이터셋으로 재구성
+3. IDE(PyCharm)에서 concat.py 실행하여 concatenate
 
 <br>
 
@@ -78,18 +77,17 @@
 
 **학습 방법**
 
-(예) 이미지 인식을 위한 학습은 기존 CNN 모델인 ResNet, DenseNet을 활용하여 수행하였습니다. 학습 방법 및 모델 구조는 다음과 같습니다.
+운전자 졸음 탐지를 위한 학습은 기존 3DCNN을 활용하여 수행하였습니다. 학습 방법 및 모델 구조는 다음과 같습니다.
+
+![image](https://user-images.githubusercontent.com/101082685/177717220-0e771f94-a0b8-4e48-99e1-30df587864d2.png)
 
 <br>
 
 **코드 실행 방법**
 
-(예) 모델 학습을 위한 Python 코드의 파일명은 train.py 입니다.  코드 실행 절차는 다음과 같습니다.
+모델 학습을 위한 Python 코드의 파일명은 train.py 입니다. 코드 실행 절차는 다음과 같습니다.
 
-- 주피터 노트북에서 실행 방법 또는
-- Python 스크립트로 실행 방법 또는
-- IDE(PyCharm)에서 실행 방법 또는
-- Docker 이미지의 실행 방법
+- IDE(PyCharm)에서 train.py 실행
 
 <br>
 
@@ -97,28 +95,17 @@
 
 (예) 학습 결과로 얻은 최적화된 하이퍼파라미터를 설명합니다.
 
-* Number of hidden units
-* Optimizer information(e.g. stochastic gradient descent, momentum, Adam, RMSProp, etc...)
-* Learning rate, Mini batch size, Number of epochs
+* temporal-depth: 10 frame
+* overlap: 5 frame
+* Optimizer: Adam
+* Mini batch size: 32 or 64
+* Number of epochs: 100
 
 <br>
 
 **학습모델**
 
 학습된 모델 파일을 설명합니다. 
-
-<br>
-
-#### 성능 지표(옵션)
-
-**목표 성능**
-예) Precision, Recall, Accuracy, AUC, MAE, MSE, RMSE 등
-
-<br>
-
-**코드 설명**
-
-성능을 평가하기 위한 코드 및 절차를 설명합니다.
 
 <br>
 
@@ -140,36 +127,11 @@
 
 <br>
 
-#### 직렬화(옵션)
-
-학습모델을 직렬화(serialization)하는 방법을 설명합니다. 학습모델의 포맷과 배포하는 모델의 포맷이 다를 경우에만 명시합니다(예. TFLite를 활용한 모델 경량화, ONNX 표준 포맷으로 변환)
-
-<br>
-
 ## Authors
-```
-* 개발에 참여한 개발자 정보 작성 
-* 개발자 정보 표기방법:  <성명>  <이메일 주소>   
-```
-* (예) 	홍길동 &nbsp;&nbsp;&nbsp;  aaa@etri.re.kr   
+
+한승은 &nbsp;&nbsp;&nbsp;  hse@etri.re.kr
 
 <br>
 <br>
 <br>
 
-
-## Version (optional)
-```
-* 현재 버전 정보 입력 (예) major.minor.patch (1.0.0) / release date (2021.10.30) 
-* 이전 버전 정보 및 관련 url 정보 
-```
-<br>
-<br>
-
-
-## Thanks (optional)
-```
-* 프로젝트 개발에 도움을 준 사람 또는 타 프로젝트 정보 입력  
-```
-
-<br>
