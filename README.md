@@ -1,13 +1,10 @@
-# Machine Learning Project Title
-```
-* Project Title 란에 프로젝트 명 입력 
-* 프로젝트에 대한 간단한 설명 작성 
-```
-(예) 이 프로젝트는 XXXX 이미지 인식을 위하여 XXXX 연구실에서 개발한 딥러닝 SW 입니다. 
-주요 기능 및 특징은 다음과 같습니다. 
+# Driver Drowsiness Detection using 3D Convolution Neural Network
 
-- 기능 : 
-- 특징 : 
+이 프로젝트는 운전자 졸음 탐지를 위하여 인간로봇상호작용연구실에서 개발한 딥러닝 SW 입니다.
+주요 기능 및 특징은 다음과 같습니다.
+
+- 기능 : 운전자 졸음 탐지
+- 특징 : 운전자의 현재 상태 뿐만 아니라 연속적인 행동의 흐름도 파악하여 더 빠르고 정확한 졸음 탐지 가능
 
 <br>
 
@@ -26,9 +23,9 @@
 * 소스코드를 실행하기 위해 필요한 라이브러리/프레임워크, 데이터셋, 컴퓨팅 환경을 명시
 ```
 
-- (예)  ML 프레임워크 : Tensorflow 2.x, Pytorch, Scikit-Learn, Docker 
-- (예) 학습 데이터셋 : Cifar10, 연구사업에서 자체 구축한 데이터셋
-- (예) 컴퓨팅 환경 : NVIDIA Tesla 등의 GPU 서버, 머신러닝 클라우드 서비스
+- ML 프레임워크 : Tensorflow 2.6.0, Scikit-Learn
+- 학습 데이터셋 : NTHU-DDD
+- 컴퓨팅 환경 : NVIDIA RTX A6000
 
 <br>
 
