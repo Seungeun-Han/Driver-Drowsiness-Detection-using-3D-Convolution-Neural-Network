@@ -67,6 +67,9 @@ NTHU-DDD 데이터셋의 준비, 전처리 절차는 다음과 같습니다
 2. IDE(PyCharm)에서 to_npy.py 실행하여 (W x H x T) 형태의 데이터셋으로 재구성
 3. IDE(PyCharm)에서 concat.py 실행하여 concatenate
 
+* 현재 소스코드에는 데이터셋 경로를 절대 경로로 작성하였습니다. 절대 경로 부분 표시를 위해 "필요시 수정" 등의 문구로 표기를 해놨습니다.
+예를 들어, preprocessing/to_npy.py 의 9~16번째 라인을 본인에 맞는 데이터셋 경로로 수정해야 합니다.
+
 <br>
 
 ## Training
