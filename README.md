@@ -21,7 +21,7 @@
 
 - ML 프레임워크 : Tensorflow 2.6.0, Scikit-Learn
 - 학습 데이터셋 : NTHU-DDD
-- 컴퓨팅 환경 : NVIDIA RTX A6000
+- 컴퓨팅 환경 : NVIDIA RTX A6000 48GB
 
 <br>
 
