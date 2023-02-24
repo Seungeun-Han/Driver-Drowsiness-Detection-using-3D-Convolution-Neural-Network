@@ -39,7 +39,7 @@
 
 데이터셋 다운로드 url :  http://cv.cs.nthu.edu.tw/php/callforpaper/datasets/DDD/
 
-데이터셋 보유 부서 및 연락처 : <인간로봇상호작용연구실> <hse@etri.re.kr> <010-4763-2512> 
+데이터셋 보유 부서 및 연락처 : <인간로봇상호작용연구실> <hse@etri.re.kr>
 
 <br>
 
