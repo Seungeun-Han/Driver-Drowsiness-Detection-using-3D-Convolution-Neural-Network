@@ -13,6 +13,7 @@
 - [Data](#data)
 - [Training](#training)
 - [Inference](#inference)
+- [Results](#results)
 - [Authors](#authors)
 
 <br>
@@ -121,6 +122,14 @@ NTHU-DDD 데이터셋의 준비, 전처리 절차는 다음과 같습니다
 새로운 데이터로 모델 테스트(추론)를 위한 Python 코드의 파일명은 inference.py 입니다. 코드 실행 절차는 다음과 같습니다.
 
 * IDE(PyCharm)에서 해당 데이터셋애 대한 경로 설정 후 inference.py 실행
+
+<br>
+
+## Results
+- Accuracy
+
+![0526_ubuntu_model_accuracy](https://user-images.githubusercontent.com/101082685/221487863-f6e02227-29d2-4149-b4f3-a0419aa2f8cd.png)
+
 
 <br>
 
