@@ -7,6 +7,11 @@
 - 특징 : 운전자의 현재 상태 뿐만 아니라 연속적인 행동 흐름도 파악하여 더 빠르고 정확한 졸음 탐지 가능
 
 <br>
+## paper
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9952988
+N. Kang et al., "Driver Drowsiness Detection based on 3D Convolution Neural Network with Optimized Window Size," 2022 13th International Conference on Information and Communication Technology Convergence (ICTC), Jeju Island, Korea, Republic of, 2022, pp. 425-428, doi: 10.1109/ICTC55196.2022.9952988.
+
+<br>
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
